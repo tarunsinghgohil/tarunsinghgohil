@@ -93,7 +93,7 @@ Customer-facing charging flows across web and mobile, backed by REST APIs.
 
 <p>
   <img src="./profile/metrics-isocalendar.svg" width="49%" alt="3D contribution calendar"/>
-  <img src="./profile/metrics-habits.svg" width="49%" alt="Coding habits"/>
+  <img src="./profile/metrics-achievements.svg" width="49%" alt="GitHub achievements"/>
 </p>
 
 <picture>
