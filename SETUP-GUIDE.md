@@ -49,20 +49,20 @@ Open **Settings → Public profile**.
 - **Public email:** `tarungohil80@gmail.com`. Don't put your phone number anywhere on GitHub; scrapers collect it.
 - **URL:** your portfolio once it's live, otherwise LinkedIn.
 - **Social accounts:** add LinkedIn.
-- **Contributions & activity:** tick **Include private contributions on my profile**. This is what the blue banner on your profile is asking for. Commits to private repos, such as Job-Agent, then show up as green squares with the repo names hidden, and your locked achievements appear.
+- **Contributions & activity:** tick **Include private contributions on my profile**. This is what the blue banner on your profile is asking for. Commits to private repos, such as job-agent, then show up as green squares with the repo names hidden, and your locked achievements appear.
 - **Status** (click your avatar on the profile page): `Open to full-stack and AI engineering roles`.
 
 ## 5. Pins and repo hygiene
 
 On your profile, click **Customize your pins**. Right now GitHub is showing its default "Popular repositories", which are all HTML and JavaScript landing pages. None of them shows the Python, Django or AI work your resumes lead with.
 
-Pin in this order as the projects exist: Job-Agent, the two new builds below, your strongest React and TypeScript project (fakeshop or Shipping-box if the code is solid), and portfolio once it's upgraded.
+Pin in this order as the projects exist: job-agent, the two new builds below, your strongest React and TypeScript project (fakeshop or shipping-box if the code is solid), and portfolio once it's upgraded.
 
 For every public repo:
 
-- Write a one-line description. `portfolio`, `hotel-nakshatra` and `Tallento.ai` have none.
+- Write a one-line description. `portfolio`, `hotel-nakshatra` and `tallento-ai` have none.
 - Add topics (`django`, `fastapi`, `react`, `llm`, `rag`, and so on) and a live demo link in the About panel.
-- Rename vague names. `virtual` doesn't tell anyone what it is. GitHub redirects old links after a rename.
+- Rename vague names (`virtual` is now `virtual-landing-page`). GitHub redirects old links after a rename.
 - Make practice clones and abandoned experiments private or archive them. Eighteen repos where six are strong beats eighteen where six are weak.
 
 ## 6. What each pinned repo's README needs
@@ -99,7 +99,7 @@ Add a GitHub Actions workflow that runs your tests on every push in each project
 
 Your resumes describe Python, Django REST Framework, FastAPI, RAG, Whisper and agent frameworks. Your public repos don't show any of it yet. These three close that gap without touching employer code. Don't upload anything from Zonov, RetailX or Formidium; that code belongs to your employers. Rebuild the ideas from scratch with synthetic data.
 
-1. **Job-Agent (make it public).** It's already on your profile as a private repo from 26 Sep. Rebuild the flow in LangGraph (tools, state, a human-approval step before anything is sent) so the LangGraph claim on your resume has code behind it. Remove any API keys, cookies or personal data from the full git history before you make it public.
+1. **job-agent (make it public).** It's already on your profile as a private repo from 26 Sep. Rebuild the flow in LangGraph (tools, state, a human-approval step before anything is sent) so the LangGraph claim on your resume has code behind it. Remove any API keys, cookies or personal data from the full git history before you make it public.
 2. **django-tenant-rbac.** A small multi-tenant Django REST starter: JWT auth, tenant-scoped querysets, role permissions, OpenAPI docs, pytest coverage, Docker Compose, CI. This is the Zonov experience shown in a form anyone can read.
 3. **docuflow-rag.** FastAPI service: upload a PDF or scanned form, OCR it, extract fields into schema-validated JSON, and answer questions grounded in the document with citations. Add a Faster-Whisper endpoint for voice notes. Small React frontend, deployed demo.
 
