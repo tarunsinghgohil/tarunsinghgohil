@@ -1,0 +1,94 @@
+name: Profile dashboard
+
+on:
+  schedule:
+    - cron: "30 0 * * *"   # every day at 06:00 IST
+  workflow_dispatch:        # "Run workflow" button in the Actions tab
+  push:
+    branches: [main]
+    paths:
+      - "scripts/**"
+      - ".github/workflows/profile-dashboard.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-dashboard
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      # Add a classic personal access token as the repo secret METRICS_TOKEN
+      # (scopes: repo, read:user). Without it, public data only and the
+      # metrics steps are skipped.
+      HAS_METRICS_TOKEN: ${{ secrets.METRICS_TOKEN != '' }}
+      CARD_COLOURS: "bg_color=17122B&title_color=F6EDE4&text_color=C9BEDC&icon_color=E7909A&ring_color=F2B544&hide_border=true&border_radius=18"
+
+    steps:
+      - uses: actions/checkout@v6
+
+      # 1. Custom dashboard, rendered by scripts/dashboard.py (standard library only)
+      - name: Build commit activity dashboard
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
+        run: python3 scripts/dashboard.py --user "${{ github.repository_owner }}" --out profile/dashboard.svg
+
+      # 2. Stats and top languages cards (GitHub Readme Stats, run inside Actions)
+      - name: Stats card
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: stats
+          # Stars and rank are hidden for now. Remove hide_rank / hide=stars once the numbers grow.
+          options: "username=${{ github.repository_owner }}&show_icons=true&include_all_commits=true&hide_rank=true&hide=stars,issues&show=prs_merged&custom_title=GitHub%20stats&${{ env.CARD_COLOURS }}"
+          path: profile/stats.svg
+          token: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Top languages card
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: top-langs
+          # HTML and CSS are hidden because byte counts inflate them; delete "hide=" to show them.
+          options: "username=${{ github.repository_owner }}&layout=compact&langs_count=8&hide=html,css,scss&size_weight=0.5&count_weight=0.5&custom_title=Languages&${{ env.CARD_COLOURS }}"
+          path: profile/top-langs.svg
+          token: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Commit refreshed cards
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add profile/*.svg
+          git commit -m "chore: refresh profile cards" || exit 0
+          git pull --rebase
+          git push
+
+      # 3. Metrics visuals (lowlighter/metrics). These commit through the API themselves.
+      - name: 3D contribution calendar
+        if: env.HAS_METRICS_TOKEN == 'true'
+        uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          filename: profile/metrics-isocalendar.svg
+          base: ""
+          config_timezone: Asia/Kolkata
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
+
+      - name: Coding habits
+        if: env.HAS_METRICS_TOKEN == 'true'
+        uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          filename: profile/metrics-habits.svg
+          base: ""
+          config_timezone: Asia/Kolkata
+          plugin_habits: yes
+          plugin_habits_facts: yes
+          plugin_habits_charts: yes
+          plugin_habits_charts_type: classic
+          plugin_habits_days: 14
+          plugin_habits_from: 200
