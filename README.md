@@ -11,7 +11,10 @@
 
 I've spent 5+ years shipping production web software from Jaipur. Most recently I was lead developer on **Zonov**, a multi-tenant hospital information system at Growit.ai, working across Django REST APIs, a React 19 and TypeScript frontend, tenant-aware access control, and OCR and LLM document workflows. Before that I built fintech SaaS products at Formidium for three and a half years, and 50+ client websites at i3Techs.
 
+Right now I'm building AI tools, starting with job-agent, an AI job-search agent. The repo goes public once it's ready.
+<!-- When job-agent is public, restore the link:
 Right now I'm building AI tools in public, starting with [job-agent](https://github.com/tarunsinghgohil/job-agent).
+-->
 
 ## What I've built
 
@@ -66,7 +69,10 @@ Customer-facing charging flows across web and mobile, backed by REST APIs.
 
 | Project | What it is | Stack |
 |---|---|---|
-| [job-agent](https://github.com/tarunsinghgohil/job-agent) | An AI agent that helps with the job search. Work in progress. | Python |
+| job-agent <sub>(private for now)</sub> | An AI agent that helps with the job search. Work in progress. | Python, FastAPI, Next.js |
+<!-- When job-agent is public, replace the row above with:
+| [job-agent](https://github.com/tarunsinghgohil/job-agent) | An AI agent that helps with the job search. Work in progress. | Python, FastAPI, Next.js |
+-->
 <!-- Add a row for each new project as you publish it, for example:
 | [django-tenant-rbac](https://github.com/tarunsinghgohil/django-tenant-rbac) | Multi-tenant Django REST starter with JWT, tenant-scoped permissions and tests | Django, DRF, PostgreSQL, pytest |
 | [docuflow-rag](https://github.com/tarunsinghgohil/docuflow-rag) | Upload a PDF or scan, get validated JSON and grounded answers | FastAPI, OCR, embeddings, OpenAI |
