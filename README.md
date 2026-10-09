@@ -9,7 +9,7 @@
   -->
 </p>
 
-I've spent 5+ years shipping production web software from Jaipur. Most recently I was lead developer on **Zonov**, a multi-tenant hospital information system at Growit.ai, working across Django REST APIs, a React 19 and TypeScript frontend, tenant-aware access control, and OCR and LLM document workflows. Before that I built fintech SaaS products at Formidium for three and a half years, and 50+ client websites at i3Techs.
+I've spent over 6 years shipping production web software from Jaipur. Most recently I was lead developer on **Zonov**, a multi-tenant hospital information system at Growit.ai, working across Django REST APIs, a React 19 and TypeScript frontend, tenant-aware access control, and OCR and LLM document workflows. Before that I built fintech SaaS products at Formidium for three and a half years, and 50+ client websites at i3Techs.
 
 Right now I'm building AI tools, starting with job-agent, an AI job-search agent. The repo goes public once it's ready.
 <!-- When job-agent is public, restore the link:
